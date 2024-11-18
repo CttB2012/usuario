@@ -4,6 +4,7 @@ import com.projeto.agendadorusuario.business.dto.UsuarioDTO;
 import com.projeto.agendadorusuario.business.mapper.UsuarioMapper;
 import com.projeto.agendadorusuario.infra.entity.Usuario;
 import com.projeto.agendadorusuario.infra.exceptions.ConflictException;
+import com.projeto.agendadorusuario.infra.exceptions.ResourceNotFoundException;
 import com.projeto.agendadorusuario.infra.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -41,5 +42,13 @@ public class UsuarioService {
 
     public boolean verificarSeEmailExiste(String email){
         return _usuarioRepository.existsByEmail(email);
+    }
+
+    public Usuario buscarUsuarioByEmail(String email){
+        return _usuarioRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email Não encontrado: " + email));
+    }
+
+    public void DeletarUsuarioByEmail(String email){
+        _usuarioRepository.deleteByEmail(email);
     }
 }
