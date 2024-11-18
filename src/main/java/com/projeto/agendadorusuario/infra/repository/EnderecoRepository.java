@@ -1,6 +1,7 @@
 package com.projeto.agendadorusuario.infra.repository;
 
-import com.treinando.projeto.infrastructure.entity.Endereco;
+
+import com.projeto.agendadorusuario.infra.entity.Endereco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
