@@ -27,17 +27,17 @@ public class UsuarioMapper {
 
     public List<Endereco>  listaDtoParaListaEndereco(List<EnderecoDTO> enderecosDTOS){
         //Mesma função do FOR abaixo
-        //return enderecosDTOS.stream().map(this::dtoParaEndereco).toList();
+        return enderecosDTOS.stream().map(this::dtoParaEndereco).toList();
 
-        List<Endereco> enderecoList = new ArrayList<>();
-        for (EnderecoDTO enderecoDTO : enderecosDTOS){
-            enderecoList.add(enderecoParaDTO(enderecoDTO));
-        }
-        return enderecoList;
+//        List<Endereco> enderecoList = new ArrayList<>();
+//        for (EnderecoDTO enderecoDTO : enderecosDTOS){
+//            enderecoList.add(dtoParaEndereco(enderecoDTO));
+//        }
+//        return enderecoList;
     }
 
 
-    public Endereco enderecoParaDTO(EnderecoDTO enderecoDTO){
+    public Endereco dtoParaEndereco(EnderecoDTO enderecoDTO){
         return Endereco.builder()
                 .rua(enderecoDTO.getRua())
                 .numero(enderecoDTO.getNumero())
@@ -50,19 +50,22 @@ public class UsuarioMapper {
 
     public List<Telefone> listaDtoParaListaTelefone(List<TelefoneDTO> telefonesDTOS){
 
-        List<Telefone> telefoneList = new ArrayList<>();
-        for(TelefoneDTO telefoneDTO : telefonesDTOS){
-            telefoneList.add(dtoParaTelefone(telefoneDTO));
-        }
-        return telefoneList;
+//        List<Telefone> telefoneList = new ArrayList<>();
+//        for(TelefoneDTO telefoneDTO : telefonesDTOS){
+//            telefoneList.add(dtoParaTelefone(telefoneDTO));
+//        }
+        return telefonesDTOS.stream().map(this::dtoParaTelefone).toList();
     }
 
     public Telefone dtoParaTelefone(TelefoneDTO telefoneDTO){
 
-        Telefone telefone = new Telefone();
-        telefone.setNumero(telefoneDTO.getNumero());
-        telefone.setDdd(telefoneDTO.getDdd());
-        return telefone;
+//        Telefone telefone = new Telefone();
+//        telefone.setNumero(telefoneDTO.getNumero());
+//        telefone.setDdd(telefoneDTO.getDdd());
+        return Telefone.builder()
+                .numero(telefoneDTO.getNumero())
+                .ddd(telefoneDTO.getDdd())
+                .build();
     }
 
 
