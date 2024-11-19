@@ -118,4 +118,15 @@ public class UsuarioMapper {
                 .build();
     }
 
+    public Usuario updateUsuario(UsuarioDTO usuarioDTO, Usuario usuarioEntity){
+        return Usuario.builder()
+                .nome(usuarioDTO.getNome() != null ? usuarioDTO.getNome() : usuarioEntity.getNome())
+                .id(usuarioEntity.getId())
+                .senha(usuarioDTO.getSenha() != null ? usuarioDTO.getSenha(): usuarioEntity.getSenha())
+                .email(usuarioDTO.getEmail() !=null ? usuarioDTO.getEmail() : usuarioEntity.getEmail())
+                .enderecoList(usuarioEntity.getEnderecoList())
+                .telefoneList(usuarioEntity.getTelefoneList())
+                .build();
+    }
+
 }

@@ -20,6 +20,7 @@ public class UsuarioController {
     private final AuthenticationManager _authenticationManager;
     private final JwtUtil _jwtUtil;
 
+
     @PostMapping
     public ResponseEntity<UsuarioDTO> salvarUsuario(@RequestBody UsuarioDTO usuarioDTO){
         return ResponseEntity.ok(_usuarioService.salvarUsuario(usuarioDTO));
@@ -43,6 +44,12 @@ public class UsuarioController {
     public ResponseEntity<Void> deletarUsuarioByEmail(@PathVariable String email){
         _usuarioService.DeletarUsuarioByEmail(email);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<UsuarioDTO> atualizarDadosUsuario(@RequestBody UsuarioDTO usuarioDTO,
+                                                            @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(_usuarioService.atualizarDadosUsuario(usuarioDTO, token));
     }
 
 }
