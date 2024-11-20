@@ -1,6 +1,8 @@
 package com.projeto.agendadorusuario.controller;
 
 import com.projeto.agendadorusuario.business.UsuarioService;
+import com.projeto.agendadorusuario.business.dto.EnderecoDTO;
+import com.projeto.agendadorusuario.business.dto.TelefoneDTO;
 import com.projeto.agendadorusuario.business.dto.UsuarioDTO;
 import com.projeto.agendadorusuario.infra.entity.Usuario;
 import com.projeto.agendadorusuario.infra.security.JwtUtil;
@@ -36,7 +38,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    private ResponseEntity<Usuario> buscarUsuarioByEmail(@RequestParam("email") String email){
+    private ResponseEntity<UsuarioDTO> buscarUsuarioByEmail(@RequestParam("email") String email){
         return ResponseEntity.ok(_usuarioService.buscarUsuarioByEmail(email));
     }
 
@@ -50,6 +52,18 @@ public class UsuarioController {
     public ResponseEntity<UsuarioDTO> atualizarDadosUsuario(@RequestBody UsuarioDTO usuarioDTO,
                                                             @RequestHeader("Authorization") String token){
         return ResponseEntity.ok(_usuarioService.atualizarDadosUsuario(usuarioDTO, token));
+    }
+
+    @PutMapping("/endereco")
+    public ResponseEntity<EnderecoDTO> atualizarEndereco(@RequestBody EnderecoDTO enderecoDTO,
+                                                         @RequestParam("id") Long id){
+        return ResponseEntity.ok(_usuarioService.atualizarEndereco(enderecoDTO, id));
+    }
+
+    @PutMapping("/telefone")
+    public ResponseEntity<TelefoneDTO> atualizarTelefone(@RequestBody TelefoneDTO telefoneDTO,
+                                                         @RequestParam("id") Long id){
+        return ResponseEntity.ok(_usuarioService.atualizarTelefone(telefoneDTO, id));
     }
 
 }
