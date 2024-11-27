@@ -69,6 +69,9 @@ public class UsuarioMapper {
     }
 
 
+
+
+
     public UsuarioDTO usuarioParaUsuarioDTO(Usuario usuario){
         return UsuarioDTO.builder()
                 .nome(usuario.getNome())
@@ -102,6 +105,28 @@ public class UsuarioMapper {
                 .estado(endereco.getEstado())
                 .build();
     }
+
+    public Endereco DtoParaEnderecoEntity(EnderecoDTO enderecoDTO, Long idUsuario){
+        return Endereco.builder()
+                .rua(enderecoDTO.getRua())
+                .numero(enderecoDTO.getNumero())
+                .complemento(enderecoDTO.getComplemento())
+                .cep(enderecoDTO.getCep())
+                .cidade(enderecoDTO.getCidade())
+                .estado(enderecoDTO.getEstado())
+                .usuario_id(idUsuario)
+                .build();
+    }
+
+    public Telefone dtoParaTelefoneEntity(TelefoneDTO telefoneDTO, Long idUsuario ){
+        return Telefone.builder()
+                .numero(telefoneDTO.getNumero())
+                .ddd(telefoneDTO.getDdd())
+                .usuario_id(idUsuario)
+
+                .build();
+    }
+
 
     public List<TelefoneDTO> listaTelefoneparaListaDTO(List<Telefone> listaTelefone){
 
