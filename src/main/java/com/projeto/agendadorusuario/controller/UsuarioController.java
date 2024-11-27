@@ -4,7 +4,6 @@ import com.projeto.agendadorusuario.business.UsuarioService;
 import com.projeto.agendadorusuario.business.dto.EnderecoDTO;
 import com.projeto.agendadorusuario.business.dto.TelefoneDTO;
 import com.projeto.agendadorusuario.business.dto.UsuarioDTO;
-import com.projeto.agendadorusuario.infra.entity.Usuario;
 import com.projeto.agendadorusuario.infra.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -64,6 +63,18 @@ public class UsuarioController {
     public ResponseEntity<TelefoneDTO> atualizarTelefone(@RequestBody TelefoneDTO telefoneDTO,
                                                          @RequestParam("id") Long id){
         return ResponseEntity.ok(_usuarioService.atualizarTelefone(telefoneDTO, id));
+    }
+
+    @PostMapping("/enderecoCadastro")
+    public ResponseEntity<EnderecoDTO> cadastrarEndereco(@RequestBody EnderecoDTO enderecoDTO,
+                                                         @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(_usuarioService.cadastrarEndereco(token, enderecoDTO));
+    }
+
+    @PostMapping("/telefoneCadastro")
+    public ResponseEntity<TelefoneDTO> cadastrarTelefone(@RequestBody TelefoneDTO telefoneDTO,
+                                                         @RequestHeader("Authorization") String token){
+        return ResponseEntity.ok(_usuarioService.cadastrarTelefone(telefoneDTO, token));
     }
 
 }
