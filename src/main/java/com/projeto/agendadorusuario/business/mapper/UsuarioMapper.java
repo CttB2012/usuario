@@ -19,8 +19,10 @@ public class UsuarioMapper {
                 .nome(usuarioDTO.getNome())
                 .email(usuarioDTO.getEmail())
                 .senha(usuarioDTO.getSenha())
-                .enderecoList(listaDtoParaListaEndereco(usuarioDTO.getEnderecosDTO()))
-                .telefoneList(listaDtoParaListaTelefone(usuarioDTO.getTelefonesDTO()))
+                .enderecoList(usuarioDTO.getEnderecosDTO() != null ?
+                        listaDtoParaListaEndereco(usuarioDTO.getEnderecosDTO()) : null)
+                .telefoneList(usuarioDTO.getTelefonesDTO() != null ?
+                        listaDtoParaListaTelefone(usuarioDTO.getTelefonesDTO()) : null)
 
                 .build();
     }
@@ -77,8 +79,10 @@ public class UsuarioMapper {
                 .nome(usuario.getNome())
                 .email(usuario.getEmail())
                 .senha(usuario.getSenha())
-                .enderecosDTO(listaEnderecoParaListaDTO(usuario.getEnderecoList()))
-                .telefonesDTO(listaTelefoneparaListaDTO(usuario.getTelefoneList()))
+                .enderecosDTO(usuario.getEnderecoList() != null ?
+                        listaEnderecoParaListaDTO(usuario.getEnderecoList()) : null)
+                .telefonesDTO(usuario.getTelefoneList() != null ?
+                        listaTelefoneparaListaDTO(usuario.getTelefoneList()) : null)
 
                 .build();
     }
